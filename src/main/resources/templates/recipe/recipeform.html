@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Recipe Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            th:src="@{/webjars/popper.js/2.5.4/umd/popper.min.js}"></script>
+
+    <script crossorigin="anonymous" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="panel-group">
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary bg-info text-light">
+                            <h4 class="card-title">Edit Recipe Information</h4>
+                        </div>
+                        <div class="card-body bg-wight">
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label>Recipe Description:</label>
+                                    <input type="text" class="form-control" th:field="*{description}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label>Categories:</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="checkbox" value="">Cat 1</label>
+                                    </div>
+                                    <div class="form-check" th:remove="all">
+                                        <label>
+                                            <input type="checkbox" value="">Cat 2</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3-auto mx-3 form-group">
+                                    <label>Prep Time:</label>
+                                    <input type="text" class="form-control" th:field="*{prepTime}">
+                                </div>
+                                <div class="col-lg-3-auto mx-3 form-group">
+                                    <label>Cooktime:</label>
+                                    <input type="text" class="form-control" th:field="*{cookTime}">
+                                </div>
+                                <div class="col-auto form-group">
+                                    <label>Difficulty:</label>
+                                    <select class="form-control">
+                                        <option>Easy</option>
+                                        <option>Medium</option>
+                                        <option>Hard</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3-auto mx-3 form-group">
+                                    <label>Servings:</label>
+                                    <input type="text" class="form-control" th:field="*{servings}">
+                                </div>
+                                <div class="col-lg-3-auto mx-3 form-group">
+                                    <label>Source:</label>
+                                    <input type="text" class="form-control" th:field="*{source}">
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>URL:</label>
+                                    <input type="text" class="form-control" th:field="*{url}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary bg-info text-light">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h4 class="card-title">Ingredients</h4>
+                                </div>
+                                <div class="col-auto">
+                                    <a class="btn btn-secondary bg-white text-dark border-0" href="#" role="button">
+                                        Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body bg-wight">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul>
+                                        <li th:remove="all">1 Cup of milk</li>
+                                        <li th:remove="all">1 Teaspoon of chocolate</li>
+                                        <li th:each="ingredient : ${recipe.ingredients}"
+                                            th:text="${(ingredient.getAmount() +
+
+                                        &apos; &apos; + ingredient.uom.getDescription() +
+
+                                        &apos; - &apos; + ingredient.getDescription())}">1 Teaspoon of Sugar</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary bg-info text-light">
+                            <h4 class="card-title">Directions</h4>
+                        </div>
+                        <div class="card-body bg-wight">
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
+                                    <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary bg-info text-light">
+                            <h4 class="card-title">Notes</h4>
+                        </div>
+                        <div class="card-body bg-wight">
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
+                                    <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-success text-light mb-4 mx-4">
+                            Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
