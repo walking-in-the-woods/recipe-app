@@ -95,8 +95,9 @@
                                     <h5 class="card-title">Ingredients</h5>
                                 </div>
                                 <div class="col-auto">
-                                    <a class="btn btn-secondary btn-sm bg-white text-dark border-0" href="#" role="button">
-                                        Edit</a>
+                                    <a class="btn btn-secondary btn-sm bg-white text-dark border-0" href="#"
+                                       th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">
+                                        View</a>
                                 </div>
                             </div>
                         </div>
