@@ -24,24 +24,38 @@
 <body>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-10 mx-auto">
             <div class="panel-group">
                 <div class="card mb-3">
                     <div class="card-header bg-primary bg-info text-light" style="max-height: 3.2rem;">
-                        <h5 class="card-title" th:text="${recipe.description}">Recipe Description</h5>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title" th:text="${recipe.description}">Recipe Description</h5>
+                            </div>
+                            <div class="col-float-right mr-2">
+                                <a class="btn btn-secondary btn-sm bg-white text-dark border-0" href="#"
+                                   th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button" method="get"
+                                >Change Image</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-float-left mt-1 mx-3">
                                 <h6>Categories:</h6>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col mt-1">
                                 <ul>
                                     <li th:remove="all">cat one</li>
                                     <li th:remove="all">cat two</li>
                                     <li th:each="category : ${recipe.categories}"
                                         th:text="${category.getDescription()}">cat three</li>
                                 </ul>
+                            </div>
+                            <div class="col-float-right mx-3 mt-1 mb-4 rounded">
+                                <img src="../../static/images/guacamole400x400.jpg"
+                                     th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
+                                     width="200" height="200">
                             </div>
                         </div>
                         <div class="row">
@@ -92,10 +106,10 @@
                 <div class="card mb-3">
                     <div class="card-header bg-primary bg-info text-light" style="max-height: 3.2rem;">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col">
                                 <h5 class="card-title">Ingredients</h5>
                             </div>
-                            <div class="col-auto">
+                            <div class="col-float-right mr-2">
                                 <a class="btn btn-secondary btn-sm bg-white text-dark border-0" href="#"
                                    th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
                             </div>

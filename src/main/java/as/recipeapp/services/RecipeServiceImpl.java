@@ -38,7 +38,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe findBiId(Long id) {
+    public Recipe findById(Long id) {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
@@ -52,7 +52,7 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional
     public RecipeCommand findCommandById(Long id) {
-        return recipeToRecipeCommand.convert(findBiId(id));
+        return recipeToRecipeCommand.convert(this.findById(id));
     }
 
     @Override

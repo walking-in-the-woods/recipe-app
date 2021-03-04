@@ -24,7 +24,7 @@
 <body>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-10 mx-auto">
             <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
                 <input type="hidden" th:field="*{id}">
                 <div class="panel-group">
@@ -55,11 +55,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3-auto mx-3 form-group">
+                                <div class="col-md-3 form-group">
                                     <label>Prep Time:</label>
                                     <input type="text" class="form-control" th:field="*{prepTime}">
                                 </div>
-                                <div class="col-lg-3-auto mx-3 form-group">
+                                <div class="col-md-3 form-group">
                                     <label>Cooktime:</label>
                                     <input type="text" class="form-control" th:field="*{cookTime}">
                                 </div>
@@ -79,15 +79,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3-auto mx-3 form-group">
+                                <div class="col-md-3 form-group">
                                     <label>Servings:</label>
                                     <input type="text" class="form-control" th:field="*{servings}">
                                 </div>
-                                <div class="col-lg-3-auto mx-3 form-group">
+                                <div class="col-md-3 form-group">
                                     <label>Source:</label>
                                     <input type="text" class="form-control" th:field="*{source}">
                                 </div>
-                                <div class="col-lg-7 form-group">
+                                <div class="col form-group">
                                     <label>URL:</label>
                                     <input type="text" class="form-control" th:field="*{url}">
                                 </div>
@@ -97,10 +97,10 @@
                     <div class="card mb-3">
                         <div class="card-header bg-primary bg-info text-light" style="max-height: 3.2rem;">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col">
                                     <h5 class="card-title">Ingredients</h5>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-float-right mr-2"">
                                     <a class="btn btn-secondary btn-sm bg-white text-dark border-0" href="#"
                                        th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">
                                         View</a>
@@ -109,7 +109,7 @@
                         </div>
                         <div class="card-body bg-wight">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col">
                                     <ul>
                                         <li th:remove="all">1 Cup of milk</li>
                                         <li th:remove="all">1 Teaspoon of chocolate</li>
@@ -130,8 +130,8 @@
                         </div>
                         <div class="card-body bg-wight">
                             <div class="row">
-                                <div class="col-lg-12 form-group">
-                                    <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
+                                <div class="col form-group">
+                                    <textarea class="form-control" rows="5" th:field="*{directions}"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -142,13 +142,15 @@
                         </div>
                         <div class="card-body bg-wight">
                             <div class="row">
-                                <div class="col-lg-12 form-group">
-                                    <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+                                <div class="col form-group">
+                                    <textarea class="form-control" rows="5" th:field="*{notes.recipeNotes}"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg btn-success text-light mb-4 mx-4">
-                            Submit</button>
+                        <div class="row mb-4 ml-4">
+                            <button type="submit" class="btn btn-primary btn-lg-2 btn-success text-light">
+                                Submit</button>
+                        </div>
                     </div>
                 </div>
             </form>
