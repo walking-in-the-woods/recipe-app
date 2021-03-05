@@ -4,6 +4,7 @@ import as.recipeapp.commands.RecipeCommand;
 import as.recipeapp.converters.RecipeCommandToRecipe;
 import as.recipeapp.converters.RecipeToRecipeCommand;
 import as.recipeapp.domain.Recipe;
+import as.recipeapp.exceptions.NotFoundException;
 import as.recipeapp.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,6 +53,15 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, never()).findById(anyLong());
     }
 
+    @Test(expected = NotFoundException.class)
+    public void getRecipeBuIdTestNotFound() throws Exception {
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
+    }
+
     @Test
     public void getRecipeByIdTest() throws Exception {
         Recipe recipe = new Recipe();
@@ -68,7 +78,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipeCommandByTest() throws Exception {
+    public void getRecipeCommandByIdTest() throws Exception {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
         Optional<Recipe> recipeOptional = Optional.of(recipe);
