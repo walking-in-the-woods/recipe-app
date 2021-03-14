@@ -3,7 +3,7 @@ package as.recipeapp.controllers;
 import as.recipeapp.commands.RecipeCommand;
 import as.recipeapp.services.ImageService;
 import as.recipeapp.services.RecipeService;
-import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
