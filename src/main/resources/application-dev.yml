@@ -3,17 +3,19 @@ spring:
     url:  jdbc:mysql://localhost:3306/as_dev
     username: as_dev_user
     password: as
+    platfirm: mysql
   jpa:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQLInnoDBDialect
     database: mysql
     show-sql: true
-    #properties:
-      #javax:
-        #persistence:
-          #schema-generation:
-            #create-source: metadata
-            #scripts:
-              #action: create
-              #create-target: as_database_create.sql
+    # enable this code to generate a schema and disable is then
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: as_database_create.sql
